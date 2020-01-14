@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import Cards from "./Card"
+import styled from 'styled-components';
 import './App.css';
 import axios from 'axios'; 
 
@@ -17,32 +17,29 @@ const App = () => {
     })
 }, []);
 
+const CharCard = styled.div `
+display: flex;
+justify
+width: 29%;
+background: white;
+border-radius: 20px;
+border: 2px solid orange;
+`
+
 let Characters = [];
 
  Characters.push(data);
+ console.log("this is characters: ", Characters);
 
- Characters.map(person => {
-   let character = person;
-   return starWarsChar(character)  
- })
- 
 
-  function starWarsChar(props) {
-    return <div className='charCard'>
-              <p>Birth Year: {props.birth_year}</p>
-              <p>Eye Color: {props.eye_color}</p>
-              <p>Height: {props.height}</p>
-              <p>Mass: {props.mass}</p>
-              <p>Home World: {props.homeworld}</p>
-              <p>Name: {props.name}</p>
-              <p>Species: {props.species}</p>
-          </div>
-  } 
+
+
 
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-      <Cards></Cards>
+      {data.map(person => {
+      return <CharCard>{person.name}</CharCard>})}
     </div>
   );
 }
